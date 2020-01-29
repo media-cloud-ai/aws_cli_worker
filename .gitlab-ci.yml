@@ -1,0 +1,11 @@
+stages:
+  - docker
+
+build:
+  stage: docker
+  image: docker:19.03.5
+  before_script:
+    - make docker-registry-login
+  script:
+    - make docker-build
+    - make docker-push-registry
