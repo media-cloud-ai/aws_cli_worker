@@ -1,8 +1,8 @@
 # AWS CLI WORKER
 
-This worker is architectured to be integrated into the Media Cloud AI plateform. For more information, you can check the documentation [here](https://media-cloud.ai/).
+This worker is architectured to be integrated into the Media Cloud AI plateform. For more information, you can check the documentation [here](https://media-cloud.ai/){:target="_blank"}.
 
-This worker is used to send command to aws using aws client ([version 2](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-using.html)).
+This worker is used to send command to aws using aws client ([version 2](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-using.html){:target="_blank"}).
 It will connect to RabbitMQ and wait for a message which tell it what to do.
 
 ## Requirements
@@ -55,7 +55,7 @@ If you use gitlab, a `.gitlab-ci.yml` file is provided. This file define a pipel
 
 ## Environment variables
 
-All variables allowing to describe the AMQP connection will be find in the rs_amqp_worker which can be found [here](https://github.com/media-cloud-ai/rs_amqp_worker).
+All variables allowing to describe the AMQP connection will be find in the rs_amqp_worker which can be found [here](https://github.com/media-cloud-ai/rs_amqp_worker){:target="_blank"}.
 
 | Variable name           | Default value              | Description                                   |
 |-------------------------|----------------------------|-----------------------------------------------|
@@ -70,7 +70,7 @@ The aws cli worker will accept a message matching to the following example:
 {
   "parameters": [
     {
-      "value": "aws2 s3 cp s3://mybucket/{element_filename} /data/element_filename.mp4",
+      "value": "aws2 s3 cp s3://mybucket/{element_filename} {target_filename}",
       "type": "string",
       "id": "command_template"
     },
@@ -78,10 +78,15 @@ The aws cli worker will accept a message matching to the following example:
       "value": "media.mp4",
       "type": "string",
       "id": "element_filename"
+    },
+    {
+      "value": "/data/media_target.mp4",
+      "type": "string",
+      "id": "target_filename"
     }
   ],
   "job_id": 123
 }
 ```
 
-This message tells the worker to copy the `media.mp4` (available in the AWS S3 bucket `mybucket`) into the directory `/data` with the target name `element_filename.mp4`.
+This message tells the worker to copy the `media.mp4` (available in the AWS S3 bucket `mybucket`) into the directory `/data` with the target name `media_target.mp4`.
