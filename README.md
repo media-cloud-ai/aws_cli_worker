@@ -1,8 +1,8 @@
 # AWS CLI WORKER
 
-This worker is architectured to be integrated into the Media Cloud AI plateform. For more information, you can check the documentation [here](https://media-cloud.ai/){:target="_blank"}.
+This worker is architectured to be integrated into the Media Cloud AI plateform. For more information, you can check the documentation <a href="https://media-cloud.ai/" target="_blank">here</a>.
 
-This worker is used to send command to aws using aws client ([version 2](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-using.html){:target="_blank"}).
+This worker is used to send command to aws using aws client (<a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-using.html" target="_blank">version 2</a>).
 It will connect to RabbitMQ and wait for a message which tell it what to do.
 
 ## Requirements
@@ -55,7 +55,7 @@ If you use gitlab, a `.gitlab-ci.yml` file is provided. This file define a pipel
 
 ## Environment variables
 
-All variables allowing to describe the AMQP connection will be find in the rs_amqp_worker which can be found [here](https://github.com/media-cloud-ai/rs_amqp_worker){:target="_blank"}.
+All variables allowing to describe the AMQP connection will be find in the rs_amqp_worker which can be found <a href="https://github.com/media-cloud-ai/rs_amqp_worker" target="_blank">here</a>.
 
 | Variable name           | Default value              | Description                                   |
 |-------------------------|----------------------------|-----------------------------------------------|
