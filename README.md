@@ -57,10 +57,26 @@ If you use gitlab, a `.gitlab-ci.yml` file is provided. This file define a pipel
 
 All variables allowing to describe the AMQP connection will be find in the rs_amqp_worker which can be found <a href="https://github.com/media-cloud-ai/rs_amqp_worker" target="_blank">here</a>.
 
+If you want to manage only one credentials (ACCESS_KEY & SECRET_ACCESS_KEY), you can use the following environement variables:
+
 | Variable name           | Default value              | Description                                   |
 |-------------------------|----------------------------|-----------------------------------------------|
 | `AWS_SECRET_ACCESS_KEY` |                            | AWS access key used by the aws client.        |
 | `AWS_ACCESS_KEY_ID`     |                            | AWS access secret key used by the aws client. |
+
+But, if you want to manage more than one credentials, you must use the `AWS_PROFILES_CREDENTIALS` with the following format :
+
+```
+profile1;access_key1;secret_key1;region1#profile2;access_key2;secret_key2;region2#...
+```
+
+When the container read the variable `AWS_PROFILES_CREDENTIALS` it creates as many profiles as there are defined. So, you could use them:
+
+```
+aws --profile profile1 s3 ls s3://mybucket
+```
+
+**_WARNING:_ You could set all environements variables but it's important to note that `AWS_SECRET_ACCESS_KEY` & `AWS_ACCESS_KEY_ID` will overrides any value loaded from a profile in the configuration file. (Source: [https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html))**
 
 ## Message format
 
@@ -70,7 +86,7 @@ The aws cli worker will accept a message matching to the following example:
 {
   "parameters": [
     {
-      "value": "aws2 s3 cp s3://mybucket/{element_filename} {target_filename}",
+      "value": "aws s3 cp s3://mybucket/{element_filename} {target_filename}",
       "type": "string",
       "id": "command_template"
     },
