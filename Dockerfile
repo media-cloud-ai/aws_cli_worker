@@ -1,4 +1,4 @@
-FROM mediacloudai/rs_command_line_worker:0.1.7-ubuntu
+FROM mediacloudai/rs_command_line_worker:0.1.8-ubuntu
 
 ENV AMQP_QUEUE job_aws_cli
 
