@@ -11,7 +11,7 @@ DOCKER_IMG_NAME?=mediacloudai/aws_cli_worker
 ifneq ($(DOCKER_REGISTRY), ) 
 	DOCKER_IMG_NAME := /${DOCKER_IMG_NAME}
 endif
-VERSION="1.0.0"
+VERSION="0.2.0"
 
 ENV?=local
 
